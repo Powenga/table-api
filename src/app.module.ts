@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import config, { IDatabaseConfig } from './config';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [
@@ -27,7 +28,7 @@ import config, { IDatabaseConfig } from './config';
           database: name,
           username: user,
           password: password,
-          entities: [],
+          entities: [User],
           // TODO: change it
           synchronize: true,
         };
