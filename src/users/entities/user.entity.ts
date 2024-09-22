@@ -11,15 +11,15 @@ export class User {
   @Column({ nullable: false })
   lastName: string;
 
-  @Column()
-  phoneNumber: string;
+  @Column({ nullable: true })
+  phoneNumber?: string;
 
-  @Column()
-  mobileNumber: string;
+  @Column({ nullable: true })
+  mobileNumber?: string;
 
-  @Column()
-  email: string;
+  @Column({ nullable: true })
+  email?: string;
 
-  @Column()
-  address: string;
+  @Column({ nullable: true })
+  address?: string;
 }

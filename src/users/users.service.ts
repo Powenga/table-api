@@ -11,8 +11,9 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(createUserDto: CreateUserDto) {
+    const user = await this.usersRepository.create(createUserDto);
+    return await this.usersRepository.save(user);
   }
 
   findAll() {
@@ -23,7 +24,7 @@ export class UsersService {
     return this.usersRepository.findOneBy({ id });
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     await this.usersRepository.delete(id);
   }
 }
