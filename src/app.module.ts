@@ -13,15 +13,20 @@ import config, { IDatabaseConfig } from './config';
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => {
-        const databaseConfig = configService.get<IDatabaseConfig>('database');
+      useFactory: (
+        configService: ConfigService<{ database: IDatabaseConfig }, true>,
+      ) => {
+        const { host, port, name, user, password } = configService.get(
+          'database',
+          { infer: true },
+        );
         return {
           type: 'postgres',
-          host: databaseConfig?.host,
-          port: databaseConfig?.port,
-          database: databaseConfig?.name,
-          username: databaseConfig?.user,
-          password: databaseConfig?.password,
+          host: host,
+          port: port,
+          database: name,
+          username: user,
+          password: password,
           entities: [],
           // TODO: change it
           synchronize: true,
