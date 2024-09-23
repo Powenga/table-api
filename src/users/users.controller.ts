@@ -25,4 +25,9 @@ export class UsersController {
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
   }
+
+  @Post('fillAll')
+  fillUsers(@Body() fillDto: { count: number }) {
+    return this.usersService.fillUsers(fillDto.count);
+  }
 }
