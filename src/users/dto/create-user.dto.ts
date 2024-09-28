@@ -2,10 +2,9 @@ import {
   IsString,
   IsNotEmpty,
   IsEmail,
-  ValidateIf,
   IsPhoneNumber,
-  IsDefined,
   MaxLength,
+  IsOptional,
 } from 'class-validator';
 
 const MAX_USER_NAME_LENGHT = 200;
@@ -22,23 +21,19 @@ export class CreateUserDto {
   @MaxLength(MAX_USER_NAME_LENGHT)
   lastName: string;
 
-  @IsDefined()
-  @ValidateIf(({ phoneNumber }) => phoneNumber !== '')
+  @IsOptional()
   @IsPhoneNumber()
   phoneNumber: string;
 
-  @IsDefined()
-  @ValidateIf(({ mobileNumber }) => mobileNumber !== '')
+  @IsOptional()
   @IsPhoneNumber()
   mobileNumber: string;
 
-  @IsDefined()
-  @ValidateIf(({ email }) => email !== '')
+  @IsOptional()
   @IsEmail()
   email: string;
 
-  @IsDefined()
-  @ValidateIf(({ address }) => address !== '')
+  @IsOptional()
   @IsString()
   @MaxLength(MAX_USER_ADDRESS_LENGHT)
   address: string;
