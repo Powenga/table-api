@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { DeleteUsersDTO } from './dto/delete-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -21,9 +22,9 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(id);
+  @Delete()
+  remove(@Body() deleteUserDto: DeleteUsersDTO) {
+    return this.usersService.delete(deleteUserDto.idList);
   }
 
   @Post('fillAll')

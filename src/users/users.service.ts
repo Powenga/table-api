@@ -39,8 +39,8 @@ export class UsersService {
     return this.usersRepository.findOneBy({ id });
   }
 
-  async remove(id: string) {
-    await this.usersRepository.delete(id);
+  async delete(idList: string[]) {
+    await this.usersRepository.delete(idList);
   }
 
   private getRandomUsers(numberOfUsers: number) {
