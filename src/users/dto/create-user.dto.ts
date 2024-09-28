@@ -35,6 +35,7 @@ export class CreateUserDto {
 
   @IsOptional()
   @IsString()
+  @IsNotEmpty()
   @MaxLength(MAX_USER_ADDRESS_LENGHT)
   address: string;
 }
