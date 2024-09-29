@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import config, { IDatabaseConfig } from './config';
 import { User } from './users/entities/user.entity';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { User } from './users/entities/user.entity';
       inject: [ConfigService],
     }),
     UsersModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
